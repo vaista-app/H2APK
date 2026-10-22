@@ -1,0 +1,32 @@
+name: Build FriendsChat APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Download Android project template
+        run: |
+          git clone https://github.com/HashShin/H2APK.git h2apk-source
+          ls -la h2apk-source
+
+      - name: Prepare build information
+        run: |
+          echo "FriendsChat website:"
+          echo "https://vaista-app.github.io/FriendsChat/"
+          echo "H2APK source downloaded successfully."
